@@ -2,11 +2,13 @@
 
 angular.module('contactRanker')
 
-.controller('MainViewController', ['$scope', 'Linkedin', function ($scope, Linkedin) {
+.controller('MainViewController', ['$scope', '$window', 'Linkedin', function ($scope, $window, Linkedin) {
     $scope.user = {
         profile: {},
         connections: [],
     };
+
+    $scope.rankings = 'top';
 
     var init = function () {
         Linkedin.getProfile(function (user) {
@@ -26,6 +28,11 @@ angular.module('contactRanker')
         });
     }
 
+    $scope.openUserProfile = function (user) {
+        if (user.profileUrl) {
+            $window.open(user.profileUrl, '_blank');
+        }
+    };
 
     init();
 }])
@@ -36,7 +43,7 @@ angular.module('contactRanker')
         return 1;
     }
 
-    return function (connections, order, limit) {
+    return function (connections, rankings, limit) {
         var processed = connections.map(function (connection) {
             connection.rank = calculateRank(connection);
             return connection;
@@ -44,7 +51,7 @@ angular.module('contactRanker')
 
         var length = processed.length >= limit ? limit : processed.length;
 
-        if (order === 'bottom') {
+        if (rankings === 'bottom') {
             var section = processed.splice(processed.length - length, length);
             section.reverse();
             return section;

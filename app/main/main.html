@@ -1,21 +1,22 @@
-<div>
-    {{ user.connections | significantConnections:'top':25 }}
+<div class="content">
+    <div class="topper">
+        <div class="profile">
+            {{ user.profile }}
+        </div>
+        <div class="controls">
+            <select ng-model="rankings">
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
 
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-    {{ user.connections | significantConnections:'bottom':25 }}
+            </select>
+        </div>
+    </div>
+    <div class="connections">
+        <ul>
+            <li ng-repeat="connection in (user.connections | significantConnections:rankings:25)"
+                    ng-click="openUserProfile(connection)">
+                {{ connection }}
+            </li>
+        </ul>
+    </div>
 </div>

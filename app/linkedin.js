@@ -62,12 +62,18 @@ angular.module('contactRanker')
             return null;
         }
 
-        return {
+        var ret = {
             name: user.firstName + " " + user.lastName,
-            pictureUrl: user.pictureUrl,
             industry: user.industry,
             location: user.location.name,
+            pictureUrl: user.pictureUrl,
         }
+
+        if (user.siteStandardProfileRequest) {
+            ret.profileUrl = user.siteStandardProfileRequest.url;
+        }
+
+        return ret;
     }
 
     IN.Event.on(IN, "auth", function() {
