@@ -41,6 +41,7 @@ body {
     position: inline-block;
     float: left;
 
+    background: #F0F0F0;
     border-radius: 40px;
     overflow: hidden;
 }
@@ -134,6 +135,7 @@ body {
     position: inline-block;
     float: left;
 
+    background: #F0F0F0;
     border-radius: 30px;
     overflow: hidden;
 }

@@ -40,23 +40,80 @@ angular.module('contactRanker')
 .filter('significantConnections', function () {
     // This is the ranking algo
     var calculateRank = function (connection) {
-        return 1;
+        // Let's pretend these were calculated
+        var topLocations = ["San Francisco Bay Area", "Buffalo/Niagara, New York Area"];
+        var topIndustries = [
+            ['Human Resources',
+             'Staffing and Recruiting',
+            ],
+            ['Computer Software',
+             'Computer Networking',
+             'Consumer Electronics',
+             'Electrical/Electronic Manufacturing',
+             'Information Services',
+             'Information Technology and Services',
+             'Internet',
+            ],
+        ];
+
+        // Markers for UI
+        var tags = [];
+
+        var locRanking = 0;
+        angular.forEach(topLocations, function (location, $index) {
+            if (connection.location === location) {
+                locRanking = topLocations.length - $index;
+
+                // Used for visually marking contact
+                if ($index === 0) {
+                    tags.push('location');
+                }
+            }
+        });
+
+        var indRanking = 1 / (topIndustries.length + 1);
+        angular.forEach(topIndustries, function (industryGroup, $index) {
+            if (industryGroup.indexOf(connection.industry) > -1) {
+                indRanking = topIndustries.length - $index;
+
+                if ($index === 0) {
+                    tags.push('industry');
+                }
+            }
+        });
+
+        return {
+            value: locRanking + (indRanking * .8),
+            tags: tags,
+        };
     }
 
     return function (connections, rankings, limit) {
+        // Calculate each connection's rank
         var processed = connections.map(function (connection) {
             connection.rank = calculateRank(connection);
             return connection;
         });
 
-        var length = processed.length >= limit ? limit : processed.length;
+        // Sort connections based on calculated rank
+        processed.sort(function (a, b) {
+            var aRank = a.rank.value;
+            var bRank = b.rank.value;
 
+            if (aRank > bRank) {
+                return -1;
+            } else if (bRank > aRank) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        // Reverse for worst contacts
         if (rankings === 'bottom') {
-            var section = processed.splice(processed.length - length, length);
-            section.reverse();
-            return section;
-        } else {
-            return processed.slice(0, length);
+            processed.reverse();
         }
-    }
+
+        return processed.slice(0, processed.length >= limit ? limit : processed.length);
+    };
 });
