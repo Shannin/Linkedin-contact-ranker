@@ -1,6 +1,7 @@
 <div class="content">
     <div class="topper">
         <div class="profile">
+
             {{ user.profile }}
         </div>
         <div class="controls">
@@ -12,11 +13,22 @@
         </div>
     </div>
     <div class="connections">
-        <ul>
-            <li ng-repeat="connection in (user.connections | significantConnections:rankings:25)"
-                    ng-click="openUserProfile(connection)">
-                {{ connection }}
-            </li>
-        </ul>
+        <div class="connection"
+                ng-repeat="connection in (user.connections | significantConnections:rankings:25)"
+                ng-click="openUserProfile(connection)">
+            <div class="photo-frame">
+                <img width="60px" src="{{connection.pictureUrl}}">
+            </div>
+
+            <div class="content">
+                <h2>
+                    <span>{{ connection.name }}</span>
+                    <i>&mdash; {{ connection.industry }}</i>
+                </h2>
+                <div class="location">
+                    {{ connection.location }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
