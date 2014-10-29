@@ -34,6 +34,10 @@ angular.module('contactRanker')
         }
     };
 
+    $scope.connectionTaggedWith = function (connection, tag) {
+        return connection.rank.tags.indexOf(tag) > -1;
+    }
+
     init();
 }])
 
@@ -83,6 +87,10 @@ angular.module('contactRanker')
         });
 
         var connectionsRank = Math.min(connection.numConnections, 500) / 500; // 500 is typical LinkedIn max
+        if (connectionsRank > .7) {
+            // They have a lot of connections...
+            tags.push('connected');
+        }
 
         return {
             value: locRanking + (indRanking * .8) + (connectionsRank * indRanking * locRanking),

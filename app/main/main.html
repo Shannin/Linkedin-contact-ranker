@@ -36,12 +36,28 @@
             </div>
             <div class="details">
                 <h2>
-                    <span>{{ connection.name }}</span>
-                    <i>&mdash; {{ connection.industry }}</i>
+                    <span>
+                        {{ connection.name }}
+                    </span>
+                    <i>
+                        &mdash;
+                        <span ng-class="{'highlight': connectionTaggedWith(connection, 'industry')}">
+                            {{ connection.industry }}
+                        </span>
+                    </i>
                 </h2>
                 <div class="location">
                     {{ connection.location }}
                 </div>
+            </div>
+
+            <div class="indicators">
+                <img height="15px"
+                        src="assets/glyphicons_map.png"
+                        ng-show="connectionTaggedWith(connection, 'location')" />
+                <img height="15px"
+                        src="assets/glyphicons_group.png"
+                        ng-show="connectionTaggedWith(connection, 'connected')" />
             </div>
         </div>
     </div>

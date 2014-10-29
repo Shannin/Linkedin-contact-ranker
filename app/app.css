@@ -100,6 +100,7 @@ body {
     height: 90px;
     margin: 15px auto;
 
+    position: relative;
     white-space: nowrap;
 
     background: white;
@@ -162,10 +163,22 @@ body {
     font-size: 14px;
 }
 
+.connections .connection h2 i .highlight {
+    color: #559246;
+}
+
 .connections .connection .location {
     padding-left: 4px;
 
     color: #7A7A7A;
     font-size: 12px;
     font-weight: 300;
+}
+
+.connections .connection .indicators {
+    position: absolute;
+    right: 15px;
+    bottom: 6px;
+
+    opacity: .3;
 }
