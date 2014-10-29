@@ -10,15 +10,11 @@ body {
     background: rgb(250, 250, 250);
 }
 
-.content {
-
-}
-
 .topper {
     position: absolute;
 
     width: 100%;
-    height: 100px;
+    height: 120px;
     margin: auto;
 
     top: 0;
@@ -32,11 +28,55 @@ body {
 }
 
 .topper .profile {
+    width: 600px;
+    height: 80px;
+    padding-top: 10px;
+    margin: auto;
+}
 
+.topper .profile .photo-frame {
+    height: 80px;
+    width: 80px;
+
+    position: inline-block;
+    float: left;
+
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.topper .profile .details {
+    float: left;
+    padding-left: 20px;
+}
+
+.topper .profile .details h2 {
+    position: inlien-block;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.topper .profile .details h2 i {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.topper .profile .details .location {
+    padding-left: 8px;
+
+    color: #7A7A7A;
+    font-size: 12px;
+    font-weight: 300;
 }
 
 .topper .controls {
+    width: 600px;
+    margin: auto;
 
+    text-align: center;
 }
 
 .connections {
@@ -45,7 +85,7 @@ body {
     width: 100%;
     margin: auto;
 
-    top: 100px;
+    top: 120px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -74,6 +114,18 @@ body {
     cursor: pointer;
 }
 
+.connections .connection .number {
+    width: 45px;
+    margin-top: 35px;
+    margin-left: 15px;
+
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+
+    float: left;
+}
+
 .connections .connection .photo-frame {
     height: 60px;
     width: 60px;
@@ -86,7 +138,7 @@ body {
     overflow: hidden;
 }
 
-.connections .connection .content {
+.connections .connection .details {
     float: left;
 }
 

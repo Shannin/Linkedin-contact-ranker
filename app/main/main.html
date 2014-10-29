@@ -1,14 +1,22 @@
 <div class="content">
     <div class="topper">
         <div class="profile">
-
-            {{ user.profile }}
+            <div class="photo-frame">
+                <img width="80px" src="{{user.profile.pictureUrl}}">
+            </div>
+            <div class="details">
+                <h2>
+                    <span>{{ user.profile.name }}'s Top LinkedIn Contacts</span>
+                </h2>
+                <div class="location">
+                    {{ user.profile.location }}
+                </div>
+            </div>
         </div>
         <div class="controls">
             <select ng-model="rankings">
                 <option value="top">Top</option>
                 <option value="bottom">Bottom</option>
-
             </select>
         </div>
     </div>
@@ -16,11 +24,17 @@
         <div class="connection"
                 ng-repeat="connection in (user.connections | significantConnections:rankings:25)"
                 ng-click="openUserProfile(connection)">
-            <div class="photo-frame">
-                <img width="60px" src="{{connection.pictureUrl}}">
+            <div class="number">
+                <span ng-show="rankings === 'top'">{{ $index + 1 }}</span>
+                <span ng-show="rankings === 'bottom'">{{ user.connections.length - $index + 1 }}</span>
             </div>
 
-            <div class="content">
+            <div class="photo-frame">
+                <img width="60px"
+                        src="{{connection.pictureUrl}}"
+                        ng-hide="!connection.pictureUrl">
+            </div>
+            <div class="details">
                 <h2>
                     <span>{{ connection.name }}</span>
                     <i>&mdash; {{ connection.industry }}</i>
