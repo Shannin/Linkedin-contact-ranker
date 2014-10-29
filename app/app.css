@@ -80,6 +80,15 @@ body {
     text-align: center;
 }
 
+.topper .controls select {
+    padding: 4px;
+}
+
+.topper .controls span {
+    padding-left: 4px;
+    color: #747474;
+}
+
 .connections {
     position: absolute;
 

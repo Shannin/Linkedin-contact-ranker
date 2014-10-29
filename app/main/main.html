@@ -6,7 +6,7 @@
             </div>
             <div class="details">
                 <h2>
-                    <span>{{ user.profile.name }}'s Top LinkedIn Contacts</span>
+                    <span>{{ user.profile.name }}'s Contact Recruiting Rankings </span>
                 </h2>
                 <div class="location">
                     {{ user.profile.location }}
@@ -15,9 +15,12 @@
         </div>
         <div class="controls">
             <select ng-model="rankings">
-                <option value="top">Top</option>
-                <option value="bottom">Bottom</option>
+                <option value="top">Best</option>
+                <option value="bottom">Worst</option>
             </select>
+            <span>
+                contacts to contact
+            </span>
         </div>
     </div>
     <div class="connections">
