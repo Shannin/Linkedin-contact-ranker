@@ -1,3 +1,21 @@
 <div>
-    {{ user }}
+    {{ user.connections | significantConnections:'top':25 }}
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {{ user.connections | significantConnections:'bottom':25 }}
 </div>
