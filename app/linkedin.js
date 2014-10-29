@@ -39,7 +39,6 @@ angular.module('contactRanker')
             .result(function (result) {
                 var connections = [];
                 angular.forEach(result.values, function (connection) {
-                    console.log(connection);
                     var c = cleanUserProfile(connection);
                     if (c) {
                         connections.push(c);
