@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "LinkedIn Contact ranker",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "version": "1.0.0",
+  "description": "Ranking my LinkedIn contacts for looking for a job",
+  "repository": "https://github.com/Shannin/Linkedin-contact-ranker",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
