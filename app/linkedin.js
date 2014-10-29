@@ -13,7 +13,7 @@ angular.module('contactRanker')
         }
 
         IN.API.Profile("me")
-            .fields([ "firstName", "lastName", "industry", "location", "pictureUrl", ])
+            .fields('first-name', 'last-name', 'industry', 'location', 'picture-url', 'num-connections')
             .result(function(result) {
                 var user = null;
                 if (result.values.length > 0) {
@@ -35,9 +35,11 @@ angular.module('contactRanker')
 
     singleton.getConnections = function (callback, error) {
         IN.API.Connections("me")
+            .fields('first-name', 'last-name', 'num-connections', 'industry', 'location', 'picture-url', 'public-profile-url')
             .result(function (result) {
                 var connections = [];
                 angular.forEach(result.values, function (connection) {
+                    console.log(connection);
                     var c = cleanUserProfile(connection);
                     if (c) {
                         connections.push(c);
@@ -65,12 +67,19 @@ angular.module('contactRanker')
         var ret = {
             name: user.firstName + " " + user.lastName,
             industry: user.industry,
-            location: user.location.name,
             pictureUrl: user.pictureUrl,
         }
 
-        if (user.siteStandardProfileRequest) {
-            ret.profileUrl = user.siteStandardProfileRequest.url;
+        if (user.location) {
+            ret.location = user.location.name;
+        }
+
+        if (user.publicProfileUrl) {
+            ret.profileUrl = user.publicProfileUrl;
+        }
+
+        if (user.numConnections) {
+            ret.numConnections = user.numConnections;
         }
 
         return ret;

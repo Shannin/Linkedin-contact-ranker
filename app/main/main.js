@@ -82,8 +82,10 @@ angular.module('contactRanker')
             }
         });
 
+        var connectionsRank = Math.min(connection.numConnections, 500) / 500; // 500 is typical LinkedIn max
+
         return {
-            value: locRanking + (indRanking * .8),
+            value: locRanking + (indRanking * .8) + (connectionsRank * indRanking * locRanking),
             tags: tags,
         };
     }
