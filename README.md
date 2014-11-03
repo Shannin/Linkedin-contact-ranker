@@ -1,5 +1,8 @@
 # A Linkedin contact ranker
 
+## This was a coding challenge for a B2B company
+
+
 This app is based on Angular and was seeded with the project: https://github.com/angular/angular-seed.  If you want to run a local copy follow the instructions found in the project README.
 
 
